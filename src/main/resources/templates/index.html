@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+				xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>TSB - Dashboard</title>
+
+    <!-- Custom fonts for this template-->
+     <link rel="stylesheet" th:href="@{/css/all.min.css}" type="text/css" />
+     <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet"/>
+      <link 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+              rel="stylesheet"
+      />
+
+    <!-- Custom styles for this template-->
+    <link rel="stylesheet" th:href="@{/css/sb-admin-2.min.css}" />
+ 	<link rel="icon" type="image/x-icon"  th:href="@{/img/tsb.jpg}">
+
+</head>
+
+<body id="page-top">
+
+<div sec:authentication="principal.authorities"></div>
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" th:href="@{/}">
+                <div class="sidebar-brand-icon">
+<!--                    <i class="fas fa-laugh-wink"></i>-->
+				<img th:src="@{/img/tsb.jpg}"alt="TSB" style="width:50px;height:60px;"/>
+                </div>
+                <div class="sidebar-brand-text mx-3">TSB GBANK <sup></sup></div>
+            </a>
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+            <!-- Nav Item - Dashboard   -->
+            
+            <div sec:authorize="hasRole('USER')">
+	            <li class="nav-item active">
+	                <a class="nav-link" th:href="@{/listClients}" target="zone">
+	                    <i class="fas fa-fw fa-tachometer-alt"></i>
+	                    <span>Liste des clients</span></a>
+	            </li>
+			</div>
+
+	           
+			<div sec:authorize="hasAnyRole('USER', 'ADMIN')">
+	            <li class="nav-item active">
+	                <a class="nav-link" th:href="@{/newclient}" target="zone">
+	                    <i class="fas fa-fw fa-tachometer-alt"></i>
+	                    <span>Ajouter des clients</span></a>
+	            </li>
+            </div>
+            
+			<div sec:authorize="hasRole('ADMIN')">
+	 			<li class="nav-item active">
+	                <a class="nav-link" th:href="@{/listComptes}" target="zone">
+	                    <i class="fas fa-fw fa-tachometer-alt"></i>
+	                    <span>Liste des comptes</span></a>
+	            </li>
+            </div>
+            <div sec:authorize="hasRole('ADMIN')">
+	 			<li class="nav-item active">
+	                <a class="nav-link" th:href="@{/newCompte}" target="zone">
+	                    <i class="fas fa-fw fa-tachometer-alt"></i>
+	                    <span>Ajouter des comptes</span></a>
+	            </li>
+            </div>
+            <div sec:authorize="hasRole('ADMIN')">
+	            <li class="nav-item active">
+	                <a class="nav-link" th:href="@{/listVirements}" target="zone">
+	                    <i class="fas fa-fw fa-tachometer-alt"></i>
+	                    <span>Listes des virements</span></a>
+	            </li>
+            </div>
+            <div sec:authorize="hasRole('ADMIN')">
+	            <li class="nav-item active">
+	                <a class="nav-link" th:href="@{/listVirementsPermanents}" target="zone">
+	                    <i class="fas fa-fw fa-tachometer-alt"></i>
+	                    <span>Les Virements permanents</span></a>
+	            </li>
+            </div>
+            <div sec:authorize="hasRole('ADMIN')">
+	            <li class="nav-item active">
+	                <a class="nav-link" th:href="@{/listVirementsMasse}" target="zone">
+	                    <i class="fas fa-fw fa-tachometer-alt"></i>
+	                    <span>Les Virements de masse</span></a>
+	            </li>
+            </div>
+            <div sec:authorize="hasRole('ADMIN')">
+	            <li class="nav-item active">
+	                <a class="nav-link" th:href="@{/newVirement}" target="zone">
+	                    <i class="fas fa-fw fa-tachometer-alt"></i>
+	                    <span>Ajouter un virement interne</span></a>
+	            </li>
+            </div>
+            <div sec:authorize="hasRole('ADMIN')">
+	            <li class="nav-item active">
+	                <a class="nav-link" th:href="@{/newVirementExterne}" target="zone">
+	                    <i class="fas fa-fw fa-tachometer-alt"></i>
+	                    <span>Ajouter un virement externe</span></a>
+	            </li>
+            </div>
+            <div sec:authorize="hasRole('ADMIN')">
+	            <li class="nav-item active">
+	                <a class="nav-link" th:href="@{/login}" >
+	                    <i class="fas fa-fw fa-tachometer-alt"></i>
+	                    <span>Logout</span></a>
+	            </li>
+            </div>
+		</ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <!-- Topbar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                     	Bonjour    <p th:text="': '+${user.nom}"></p>
+                    </ul>
+                </nav>
+                <!-- End of Topbar -->
+                
+                
+				<iframe width="100%" height="100%" name="zone" frameborder="0"></iframe>
+                <!-- Begin Page Content -->
+              
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Hiba 2022</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Bootstrap core JavaScript-->
+	 <script th:src="@{/js/jquery.min.js}" />
+	 <script th:src="@{/js/bootstrap.bundle.min.js}" />
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>TSB - Dashboard</title>
+
+<link rel="stylesheet" th:href="@{/css/sb-admin-2.min.css}" />
+	
+</head>
+<body>
+
+	<div class="container my-2">
+		<h1>Liste des clients</h1>
+		<a th:href = "@{/newclient}" class="btn btn-primary btn-sm mb-3"> Ajouter un client </a>
+		<a th:href = "@{/export}" class="btn btn-success btn-sm mb-3"> Exporter le tableau </a>
+		<table border="1" class=" table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th>
+							ID client
+					</th>
+					<th>
+							Prenom
+					</th>
+					<th>
+							Nom
+					</th>
+					<th>
+							Email
+					</th>
+					<th>
+							Date de naissance
+					</th>
+					<th>
+							sexe
+					</th>
+					<th>
+							Profession 
+					</th>
+					<th>
+							Type
+					</th>
+					<th>
+							Etat civil
+					</th>
+					<th>
+							Telephone
+					</th>
+					<th> Actions </th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="client : ${listClients}">
+					<td th:text="${client.id}"></td>
+					<td th:text="${client.prenom}"></td>
+					<td th:text="${client.nom}"></td>
+					<td th:text="${client.email}"></td>
+					<td th:text="${client.naissance}"></td>
+					<td th:text="${client.sexe}"></td>
+					<td th:text="${client.profession}"></td>
+					<td th:text="${client.type}"></td>
+					<td th:text="${client.etatCivil}"></td>
+					<td th:text="${client.numTel}"></td>
+
+					<td> 
+						<a th:href="@{/updateClient/{id}(id=${client.id})}" class="btn btn-primary">Modifier</a>
+					    <a th:href="@{/deleteClient/{id}(id=${client.id})}" class="btn btn-danger">Suprimer</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
