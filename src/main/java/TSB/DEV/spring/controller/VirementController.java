@@ -55,14 +55,21 @@ public class VirementController {
 	    }
 
 		@GetMapping("/newVirement")
-		public String ShowForm(Model model) {
+		public String showForm(Model model) {
 			Virement v = new Virement();
 			model.addAttribute("virement", v);
 			return "gestionvirements/new_virement";
 		}
 		
+		@GetMapping("/newVirementExterne")
+		public String showFormExterne(Model model) {
+			Virement v = new Virement();
+			model.addAttribute("virement", v);
+			return "gestionvirements/new_virement_externe";
+		}
+		
 		@PostMapping("/saveVirement")
-		public String Save(@ModelAttribute("virement") Virement v) {
+		public String saveVirement(@ModelAttribute("virement") Virement v) {
 			//get Compte beneficiaire
 			Compte cBenef = compteRepo.findByRibCompte(v.getRibBeneficiaire());
 			//get Compte client
@@ -79,29 +86,28 @@ public class VirementController {
 			}
 		}
 		
-//		
-//		@PostMapping("/saveVirementExterne")
-//		public String SaveExterne(@ModelAttribute("virement") Virement v) {
-//			//Verifier l'existance de beneficiaire
-//			if(benefRepo.findByRibBeneficiaire(v.getRibBeneficiaire()) != null) {
-//				Compte cClient = compteRepo.findByRibCompte(v.getRibDepart());
-//				//get Compte client
-//				if(cClient.getSolde()>v.getMontant()) {
-//					if(v.getMontant()>5000) {
-//						//Payment par forcage
-//					}else {
-//						cClient.setSolde(cClient.getSolde()-v.getMontant());
-//						compteRepo.save(cClient);
-//						virementRepo.save(v);
-//						return "sucess";
-//					}
-//				}else {
-//					return "error";
-//				}
-//			}else {
-//				return "error";
-//			}
-//		}
+		@PostMapping("/saveVirementExterne")
+		public String saveExterne(@ModelAttribute("virement") Virement v) {
+			//Verifier l'existance de beneficiaire
+			if(benefRepo.findByRibBeneficiaire(v.getRibBeneficiaire()) != null) {
+				Compte cClient = compteRepo.findByRibCompte(v.getRibDepart());
+				//get Compte client
+				if(cClient.getSolde()>v.getMontant()) {
+						cClient.setSolde(cClient.getSolde()-v.getMontant());
+						compteRepo.save(cClient);
+						virementRepo.save(v);
+						if(v.getMontant()>5000) {
+							return "gestionvirements/sucessForcee";
+						}
+						return "sucess";
+					
+				}else {
+					return "error";
+				}
+			}else {
+				return "error";
+			}
+		}
 		
 		@GetMapping("/updateVirement/{id}")
 		public String update(@PathVariable ( value = "id") long id, Model model) {

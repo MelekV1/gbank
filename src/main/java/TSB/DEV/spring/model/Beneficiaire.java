@@ -33,6 +33,6 @@ public class Beneficiaire {
 	private String prenomben;
 	
 	@Column (name="rib_beneficiaire")
-	private String ribbeneficiaire;
+	private String ribBeneficiaire;
 
 }

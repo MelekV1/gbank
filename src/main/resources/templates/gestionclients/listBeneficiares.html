@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>TSB - Dashboard</title>
+
+<link rel="stylesheet" th:href="@{/css/sb-admin-2.min.css}" />
+	
+</head>
+<body>
+
+	<div class="container my-2">
+		<h1>Liste des Beneficiares</h1>
+		<table border="1" class=" table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th>
+							ID client
+					</th>
+					<th>
+							Prenom
+					</th>
+					<th>
+							Nom
+					</th>
+					<th>
+							RIB
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="b : ${listBeneficiares}">
+					<td th:text="${b.id}"></td>
+					<td th:text="${b.prenomben}"></td>
+					<td th:text="${b.nomben}"></td>
+					<td th:text="${b.ribBeneficiaire}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

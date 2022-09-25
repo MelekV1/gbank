@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>TSB - Dashboard</title>
+
+<link rel="stylesheet" th:href="@{/css/sb-admin-2.min.css}" />
+	
+</head>
+<body>
+
+	<div class="container my-2">
+		<h1>Liste des utilisateurs</h1>
+		<a th:href = "@{/newUser}" class="btn btn-primary btn-sm mb-3"> Ajouter un utilisateur </a>
+		<table border="1" class=" table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th>
+							ID client
+					</th>
+					<th>
+							username
+					</th>
+					<th>
+							nom
+					</th>
+					
+<!--					<th> Actions </th>-->
+<!--					-->
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user : ${listUsers}">
+					<td th:text="${user.id}"></td>
+					<td th:text="${user.prenom}"></td>
+					<td th:text="${user.nom}"></td>
+					<td th:text="${user.email}"></td>
+
+<!--					<td> -->
+<!--						<a th:href="@{/updateClient/{id}(id=${client.id})}" class="btn btn-primary">Modifier</a>-->
+<!--					    <a th:href="@{/deleteClient/{id}(id=${client.id})}" class="btn btn-danger">Suprimer</a>-->
+<!--					</td>-->
+					
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

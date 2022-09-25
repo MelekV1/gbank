@@ -15,7 +15,7 @@
 		<hr>
 		<h2>Ajouter un virement externe</h2>
 
-		<form action="#" th:action="@{/saveExtVirement}" th:object="${virement}"
+		<form action="#" th:action="@{/saveVirementExterne}" th:object="${virement}"
 			method="POST">				
 				<label>Montant de virement</label>
 				<input type="text" th:field="*{montant}" placeholder="Montant du virement" class="form-control mb-4 col-4">

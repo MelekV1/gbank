@@ -55,15 +55,6 @@
 	                    <span>Liste des clients</span></a>
 	            </li>
 			</div>
-
-	           
-			<div sec:authorize="hasAnyRole('USER', 'ADMIN')">
-	            <li class="nav-item active">
-	                <a class="nav-link" th:href="@{/newclient}" target="zone">
-	                    <i class="fas fa-fw fa-tachometer-alt"></i>
-	                    <span>Ajouter des clients</span></a>
-	            </li>
-            </div>
             
 			<div sec:authorize="hasRole('ADMIN')">
 	 			<li class="nav-item active">
@@ -72,13 +63,7 @@
 	                    <span>Liste des comptes</span></a>
 	            </li>
             </div>
-            <div sec:authorize="hasRole('ADMIN')">
-	 			<li class="nav-item active">
-	                <a class="nav-link" th:href="@{/newCompte}" target="zone">
-	                    <i class="fas fa-fw fa-tachometer-alt"></i>
-	                    <span>Ajouter des comptes</span></a>
-	            </li>
-            </div>
+
             <div sec:authorize="hasRole('ADMIN')">
 	            <li class="nav-item active">
 	                <a class="nav-link" th:href="@{/listVirements}" target="zone">
@@ -90,28 +75,42 @@
 	            <li class="nav-item active">
 	                <a class="nav-link" th:href="@{/listVirementsPermanents}" target="zone">
 	                    <i class="fas fa-fw fa-tachometer-alt"></i>
-	                    <span>Les Virements permanents</span></a>
+	                    <span>Virements permanents</span></a>
 	            </li>
             </div>
             <div sec:authorize="hasRole('ADMIN')">
 	            <li class="nav-item active">
 	                <a class="nav-link" th:href="@{/listVirementsMasse}" target="zone">
 	                    <i class="fas fa-fw fa-tachometer-alt"></i>
-	                    <span>Les Virements de masse</span></a>
+	                    <span>Virements de masse</span></a>
 	            </li>
             </div>
             <div sec:authorize="hasRole('ADMIN')">
 	            <li class="nav-item active">
 	                <a class="nav-link" th:href="@{/newVirement}" target="zone">
 	                    <i class="fas fa-fw fa-tachometer-alt"></i>
-	                    <span>Ajouter un virement interne</span></a>
+	                    <span>Virement interne</span></a>
 	            </li>
             </div>
             <div sec:authorize="hasRole('ADMIN')">
 	            <li class="nav-item active">
 	                <a class="nav-link" th:href="@{/newVirementExterne}" target="zone">
 	                    <i class="fas fa-fw fa-tachometer-alt"></i>
-	                    <span>Ajouter un virement externe</span></a>
+	                    <span>Virement externe</span></a>
+	            </li>
+            </div>
+            <div sec:authorize="hasRole('ADMIN')">
+	            <li class="nav-item active">
+	                <a class="nav-link" th:href="@{/listUsers}" target="zone">
+	                    <i class="fas fa-fw fa-tachometer-alt"></i>
+	                    <span>Gestion utilisateurs</span></a>
+	            </li>
+            </div>
+            <div sec:authorize="hasRole('ADMIN')">
+	            <li class="nav-item active">
+	                <a class="nav-link" th:href="@{/listBeneficiares}" target="zone">
+	                    <i class="fas fa-fw fa-tachometer-alt"></i>
+	                    <span>List des beneficiares</span></a>
 	            </li>
             </div>
             <div sec:authorize="hasRole('ADMIN')">

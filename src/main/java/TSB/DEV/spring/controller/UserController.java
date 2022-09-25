@@ -27,6 +27,26 @@ public class UserController {
 		model.addAttribute("user", u);
 		return "index";
 	}
+	
+    @GetMapping("/listUsers")
+    public String viewAllUsers(Model model) {
+		model.addAttribute("listUsers", userService.findAll());
+		return "iam/listUser";
+    }
+    
+    @GetMapping("/addNewForm")
+    public String addUser(Model model) {
+    	User u = new User();
+		model.addAttribute("user", u);
+		return "iam/new_user";		
+    }
+    
+    @GetMapping("/saveUser")
+	public String saveClient(@ModelAttribute("user") User u) {
+    	userService.save(u);
+		return "sucess";
+	}
+    
 //    @Autowired
 //    private UserService userService;
 //
